@@ -9,7 +9,7 @@ class Minerals extends Model
     //
     protected $table="minerals";
 
-    public function comanda()
+    public function comandes()
     {
         return $this->hasMany(Comanda::class);
     }
