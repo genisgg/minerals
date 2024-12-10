@@ -3,9 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+//Route::get('/', function () {
+//    return view('home');
+//})->name('home');
+
+Route::get('/', [App\Http\Controllers\MineralsController::class, 'homeProductes'])
+    ->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -13,7 +13,14 @@ class MineralsController extends Controller
      */
     public function index()
     {
-        //
+        $minerals = Minerals::with('categoria')->get();
+        return view('minerals.index', compact('minerals'));
+        
+    }
+
+    public function homeProductes(){
+        $minerals = Minerals::with('categoria')->get();
+        return view('home', compact('minerals'));
     }
 
     /**
