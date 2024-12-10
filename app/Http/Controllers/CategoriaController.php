@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Minerals;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,12 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+    }
+
+    public function homeProductesCateg()
+    {
+        $categories = Categoria::all();;
+        return view('home', compact('categories'));
     }
 
     /**

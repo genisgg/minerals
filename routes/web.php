@@ -3,12 +3,23 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\MineralsController;
+
 //Route::get('/', function () {
 //    return view('home');
 //})->name('home');
 
-Route::get('/', [App\Http\Controllers\MineralsController::class, 'homeProductes'])
-    ->name('home');
+
+
+Route::get('/', function () {
+    $minerals = \App\Models\Minerals::with('categoria')->get();
+    $categories = \App\Models\Categoria::all();
+    return view('home', compact('minerals', 'categories'));
+})->name('home');
+
+//Route::get('/', [MineralsController::class, 'homeProductes'])
+//    ->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
