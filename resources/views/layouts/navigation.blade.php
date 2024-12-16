@@ -22,6 +22,12 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('productes')" :active="request()->routeIs('productes')">
+                        {{ __('Productes') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -83,6 +89,10 @@
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('productes')" :active="request()->routeIs('productes')">
+                {{ __('Productes') }}
+            </x-responsive-nav-link>
+            
         </div>
 @auth
     

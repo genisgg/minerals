@@ -18,6 +18,18 @@ Route::get('/', function () {
     return view('home', compact('minerals', 'categories'));
 })->name('home');
 
+
+Route::get('/productes', function () {
+    $data = [
+        'foto' => request('foto'),
+        'nom' => request('nom'),
+        'preu' => request('preu'),
+        'descripcio' => request('descripcio'),
+    ];
+    return view('productes', ['mineral' => $data]);
+})->name('productes');
+
+
 //Route::get('/', [MineralsController::class, 'homeProductes'])
 //    ->name('home');
 

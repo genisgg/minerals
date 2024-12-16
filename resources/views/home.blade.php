@@ -1,23 +1,22 @@
 <x-guest-layout>
     <div class="py-5 bg-gray-100">
         <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <!-- Categories -->
-        <section class="mb-12">
-            <h2 class="font-semibold text-lg text-gray-800 mb-6">Categories</h2>
-            <div class="flex flex-wrap justify-between gap-2">
-                <button class="category-btn bg-indigo-600 text-white rounded-lg px-4 py-2 flex-1 text-center"
-                        onclick="filterMinerals('all', this)">
-                    Tots els minerals
-                </button>
-                @foreach ($categories as $categoria)
-                    <button class="category-btn bg-white text-gray-700 rounded-lg px-4 py-2 flex-1 text-center"
-                            onclick="filterMinerals('{{ $categoria->id }}', this)">
-                        {{ $categoria->nom_categoria }}
+            <!-- Categories -->
+            <section class="mb-12">
+                <h2 class="font-semibold text-lg text-gray-800 mb-6">Categories</h2>
+                <div class="flex flex-wrap justify-between gap-2">
+                    <button class="category-btn bg-indigo-600 text-white rounded-lg px-4 py-2 flex-1 text-center"
+                            onclick="filterMinerals('all', this)">
+                        Tots els minerals
                     </button>
-                @endforeach
-            </div>
-        </section>
-
+                    @foreach ($categories as $categoria)
+                        <button class="category-btn bg-white text-gray-700 rounded-lg px-4 py-2 flex-1 text-center"
+                                onclick="filterMinerals('{{ $categoria->id }}', this)">
+                            {{ $categoria->nom_categoria }}
+                        </button>
+                    @endforeach
+                </div>
+            </section>
 
             <!-- Llista de Minerals -->
             <section>
@@ -32,7 +31,7 @@
                                 <img src="{{ asset($mineral->foto ?? 'img/placeholder.jpg') }}" 
                                      alt="{{ $mineral->nom }}" 
                                      class="w-full h-full object-cover rounded-md">
-                            </div>  
+                            </div>
 
                             <!-- Nom i Preu -->
                             <h3 class="font-medium text-gray-700 text-center mt-4">
@@ -42,8 +41,17 @@
                                 <span class="text-gray-700 font-normal">Preu:</span>
                                 <span class="text-indigo-600 font-bold">{{ $mineral->preu }} €</span>
                             </p>
+
+                            <!-- Botó + Info -->
                             <p class="text-blue-500 cursor-pointer text-center">
+                                <a href="{{ route('productes', [
+                                    'foto' => $mineral->foto ?? 'img/placeholder.jpg',
+                                    'nom' => $mineral->nom,
+                                    'preu' => $mineral->preu,
+                                    'descripcio' => $mineral->descripcio
+                                ]) }}">
                                     + Info
+                                </a>
                             </p>
                         </div>
                     @endforeach
@@ -74,6 +82,16 @@
             // Afegeix la classe activa a la categoria seleccionada
             button.classList.add('bg-indigo-600', 'text-white');
             button.classList.remove('bg-white', 'text-gray-700');
+        }
+
+        function redirectToProductes(foto, nom, preu, descripcio) {
+            const params = new URLSearchParams();
+            params.append('foto', foto);
+            params.append('nom', nom);
+            params.append('preu', preu);
+            params.append('descripcio', descripcio);
+
+            window.location.href = '/productes?' + params.toString();
         }
     </script>
 </x-guest-layout>
