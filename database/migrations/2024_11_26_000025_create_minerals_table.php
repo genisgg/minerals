@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('minerals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('categoria_id')
-            ->constrained(table:'categoria')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->constrained(table: 'categoria')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->string('nom');
             $table->string('descripcio');
             $table->integer('preu');
+            $table->string('foto')->nullable(); 
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

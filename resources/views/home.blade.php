@@ -5,16 +5,16 @@
             <!-- Categories -->
             <section class="mb-12">
                 <h2 class="font-semibold text-lg text-gray-800 mb-6">Categories</h2>
-                <div class="flex flex-wrap gap-4">
+                <div class="flex gap-4">
                     <button 
-                        class="category-btn bg-indigo-600 text-white rounded-lg shadow px-6 py-2 hover:shadow-lg transition active" 
+                        class="category-btn flex-1 bg-indigo-600 text-white rounded-lg shadow px-6 py-2 hover:shadow-lg transition text-center" 
                         onclick="filterMinerals('all', this)">
                         Tots els minerals
                     </button>
 
                     @foreach ($categories as $categoria)
                         <button 
-                            class="category-btn bg-white text-gray-700 rounded-lg shadow px-6 py-2 hover:shadow-lg transition" 
+                            class="category-btn flex-1 bg-white text-gray-700 rounded-lg shadow px-6 py-2 hover:shadow-lg transition text-center" 
                             onclick="filterMinerals('{{ $categoria->id }}', this)">
                             {{ $categoria->nom_categoria }}
                         </button>
@@ -30,11 +30,16 @@
                         <div 
                             class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition mineral-card" 
                             data-category-id="{{ $mineral->categoria_id }}">
-                        
-                            <img src="{{ $mineral->foto ?? 'https://via.placeholder.com/200x200' }}" 
+
+                            <!-- Imatge del mineral -->
+                            <img src="{{ asset($mineral->foto ?? 'img/placeholder.jpg') }}" 
                                  alt="{{ $mineral->nom }}" 
                                  class="w-full h-48 object-cover rounded-md mb-4">
+                            
+                            <!-- Nom del mineral -->
                             <h3 class="font-medium text-gray-700 text-center mb-2">{{ $mineral->nom }}</h3>
+                            
+                            <!-- Preu del mineral -->
                             <p class="text-gray-500 text-sm text-center">Preu:</p>
                             <p class="text-indigo-600 font-bold text-center">{{ $mineral->preu }} €</p>
                         </div>
@@ -48,6 +53,7 @@
         <x-footer />
     </div>
 
+    <!-- Script per filtrar minerals per categoria -->
     <script>
         function filterMinerals(categoryId, button) {
             const minerals = document.querySelectorAll('.mineral-card');
