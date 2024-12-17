@@ -44,7 +44,7 @@
             const descripcio = params.get('descripcio');
 
             if (foto && nom && preu && descripcio) {
-                // Mostra la informació del mineral
+                //informació del mineral
                 document.getElementById("no-mineral").classList.add('hidden');
                 document.getElementById("mineral-container").classList.remove('hidden');
 

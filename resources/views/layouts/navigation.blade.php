@@ -33,7 +33,15 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
-                    
+                <!-- Icona del Carrito -->
+                <div style="margin-right: 20px; display: flex; align-items: center;">
+                    <a href="#" style="text-decoration: none; color: black;">
+                        <i class="fas fa-shopping-cart fa-lg"></i> <!-- Icona FontAwesome -->
+                    </a>
+                </div>
+
+
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -65,7 +73,6 @@
                     </x-slot>
                 </x-dropdown>
                 @endauth
-
             </div>
 
             <!-- Hamburger -->
@@ -92,10 +99,9 @@
             <x-responsive-nav-link :href="route('productes')" :active="request()->routeIs('productes')">
                 {{ __('Productes') }}
             </x-responsive-nav-link>
-            
         </div>
-@auth
-    
+
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
@@ -121,6 +127,5 @@
             </div>
         </div>
         @endauth
-
     </div>
 </nav>
