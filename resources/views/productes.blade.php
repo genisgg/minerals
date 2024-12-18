@@ -3,7 +3,7 @@
         <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Mineral Seleccionat -->
             <section class="bg-white rounded-lg shadow p-6">
-                <h2 class="font-semibold text-lg text-gray-800 mb-6 text-left">Mineral Seleccionat: </h2>
+                <h2 class="font-semibold text-lg text-gray-800 mb-6 text-left">{{ __("Mineral Seleccionat: ") }}</h2>
 
                 @if ($mineral)
                     <!-- Contingut del mineral -->
@@ -25,7 +25,7 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $mineral->id }}">
                                     <button type="submit" class="bg-green-600 text-white rounded-lg px-6 py-2 hover:bg-green-700">
-                                        Afegir al carrito
+                                        {{ __("Afegir al carrito") }}
                                     </button>
                                 </form>
                             </div>
@@ -34,7 +34,7 @@
                 @else
                     <!-- Missatge per defecte si no hi ha cap mineral -->
                     <div id="no-mineral" class="text-center text-gray-700">
-                        <p class="text-lg">No s'ha trobat cap mineral.</p>
+                        <p class="text-lg">{{ __("No s'ha trobat cap mineral.") }}</p>
                     </div>
                 @endif
             </section>

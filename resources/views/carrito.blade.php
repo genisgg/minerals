@@ -6,7 +6,7 @@
             <!-- Mostra el número total de productes -->
             <div class="bg-white rounded-lg shadow p-4 mb-6">
                 <p class="text-gray-700 text-lg">
-                    Tens <span id="product-count" class="font-bold">{{ count($carrito) }}</span> productes al carrito.
+                    {{ __("Tens") }} <span id="product-count" class="font-bold">{{ count($carrito) }}</span> {{ __("productes al carrito.") }}
                 </p>
             </div>
 
@@ -27,13 +27,13 @@
                                     <!-- Nom i Preu per Unitat -->
                                     <div>
                                         <span class="block font-medium text-gray-800">{{ $producte['nom'] }}</span>
-                                        <span class="text-gray-500 text-sm">Preu unitari: {{ number_format($producte['preu'], 2) }} €</span>
+                                        <span class="text-gray-500 text-sm">{{ __("Preu unitari: ") }} {{ number_format($producte['preu'], 2) }} €</span>
                                     </div>
                                 </div>
 
                                 <!-- Quantitat -->
                                 <div class="w-1/3 text-center flex items-center justify-center">
-                                    <span class="text-gray-600 mr-2">Quantitat:</span>
+                                    <span class="text-gray-600 mr-2"> {{ __("Quantitat:") }} </span>
                                     <form action="{{ route('carrito.actualitzar') }}" method="POST" class="inline">
                                         @csrf
                                         <input type="hidden" name="index" value="{{ $index }}">
@@ -68,11 +68,11 @@
                     <!-- Total -->
                     <div class="mt-6 text-right">
                         <h3 class="text-xl font-semibold text-gray-800">
-                            Total: <span class="text-indigo-600">{{ number_format($total, 2) }} €</span>
+                            {{ __("Total de la comanda: ") }} <span class="text-indigo-600">{{ number_format($total, 2) }} €</span>
                         </h3>
                     </div>
                 @else
-                    <p class="text-gray-700">El carrito està buit.</p>
+                    <p class="text-gray-700">{{ __("El carrito està buit.") }}</p>
                 @endif
             </div>
         </div>

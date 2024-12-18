@@ -3,11 +3,11 @@
         <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Categories -->
             <section class="mb-12">
-                <h2 class="font-semibold text-lg text-gray-800 mb-6">Categories</h2>
+                <h2 class="font-semibold text-lg text-gray-800 mb-6"> {{ __("Categories") }}</h2>
                 <div class="flex flex-wrap justify-between gap-2">
                     <button class="category-btn bg-indigo-600 text-white rounded-lg px-4 py-2 flex-1 text-center"
                             onclick="filterMinerals('all', this)">
-                        Tots els minerals
+                            {{ __("Tots els minerals") }}
                     </button>
                     @foreach ($categories as $categoria)
                         <button class="category-btn bg-white text-gray-700 rounded-lg px-4 py-2 flex-1 text-center"
@@ -20,7 +20,7 @@
 
             <!-- Llista de Minerals -->
             <section>
-                <h2 class="font-semibold text-lg text-gray-800 mb-6">Tots els minerals</h2>
+                <h2 class="font-semibold text-lg text-gray-800 mb-6"> {{ __("Tots els minerals") }} </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" id="mineral-container">
                     @foreach ($minerals as $mineral)
                         <div class="mineral-card bg-white rounded-lg shadow p-4 hover:shadow-lg transition relative" 
