@@ -57,7 +57,7 @@
 
     <!-- Footer Spacer -->
     <div style="height: 100px;"></div>
-
+    
     <script>
         function filterMinerals(categoryId, button) {
             const minerals = document.querySelectorAll('.mineral-card');

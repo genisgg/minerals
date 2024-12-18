@@ -13,15 +13,20 @@ Route::get('/', function () {
     return view('home', compact('minerals', 'categories'));
 })->name('home');
 
-// Ruta per mostrar els productes
+// Mostrar més info dels productes
 Route::get('/productes', [MineralsController::class, 'mesInfoProductes'])->name('productes');
 
 // Rutes del carrito utilitzant el ComandaController
 Route::get('/carrito', [ComandaController::class, 'index'])->name('carrito');
 Route::post('/carrito/afegir', [ComandaController::class, 'afegirAlCarrito'])->name('carrito.afegir');
+Route::post('/carrito/afegir-id', [ComandaController::class, 'afegirAlCarritoPerId'])->name('carrito.afegir-id');
 Route::post('/carrito/guardar', [ComandaController::class, 'guardarComanda'])->name('carrito.guardar');
 
-// Ruta per al dashboard (requereix autenticació)
+Route::post('/carrito/actualitzar', [ComandaController::class, 'actualitzarCarrito'])->name('carrito.actualitzar');
+Route::post('/carrito/borrar', [ComandaController::class, 'borrarDelCarrito'])->name('carrito.borrar');
+
+
+// Ruta pel dashboard (requereix autenticació)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -33,5 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Incloem les rutes d'autenticació
 require __DIR__.'/auth.php';

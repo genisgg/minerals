@@ -21,9 +21,13 @@
                             </div>
                             <!-- Botó Afegir al Carro -->
                             <div class="mt-6 text-right">
-                                <button class="bg-indigo-600 text-white rounded-lg px-6 py-2 hover:bg-indigo-700">
-                                    Afegir al carro
-                                </button>
+                                <form action="{{ route('carrito.afegir-id') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $mineral->id }}">
+                                    <button type="submit" class="bg-green-600 text-white rounded-lg px-6 py-2 hover:bg-green-700">
+                                        Afegir al carrito
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
