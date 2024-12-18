@@ -45,7 +45,7 @@
                             <!-- Botó + Info -->
                             <p class="text-blue-500 cursor-pointer text-center">
                                 <a href="{{ route('productes', ['id' => $mineral->id]) }}">
-                                    + Info
+                                    {{ __("+ Info") }}
                                 </a>
                             </p>
                         </div>
