@@ -44,12 +44,7 @@
 
                             <!-- Botó + Info -->
                             <p class="text-blue-500 cursor-pointer text-center">
-                                <a href="{{ route('productes', [
-                                    'foto' => $mineral->foto ?? 'img/placeholder.jpg',
-                                    'nom' => $mineral->nom,
-                                    'preu' => $mineral->preu,
-                                    'descripcio' => $mineral->descripcio
-                                ]) }}">
+                                <a href="{{ route('productes', ['id' => $mineral->id]) }}">
                                     + Info
                                 </a>
                             </p>
@@ -82,16 +77,6 @@
             // Afegeix la classe activa a la categoria seleccionada
             button.classList.add('bg-indigo-600', 'text-white');
             button.classList.remove('bg-white', 'text-gray-700');
-        }
-
-        function redirectToProductes(foto, nom, preu, descripcio) {
-            const params = new URLSearchParams();
-            params.append('foto', foto);
-            params.append('nom', nom);
-            params.append('preu', preu);
-            params.append('descripcio', descripcio);
-
-            window.location.href = '/productes?' + params.toString();
         }
     </script>
 </x-guest-layout>

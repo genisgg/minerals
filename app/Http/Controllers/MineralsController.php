@@ -23,6 +23,20 @@ class MineralsController extends Controller
         return view('home', compact('minerals'));
     }
 
+    public function mesInfoProductes(Request $request)
+    {
+        $mineralId = $request->input('id');
+        $mineral = Minerals::find($mineralId);
+
+        if (!$mineral) {
+            return view('productes', ['mineral' => null]);
+        }
+
+        return view('productes', ['mineral' => $mineral]);
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      */

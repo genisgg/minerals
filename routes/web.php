@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComandaController;
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MineralsController;
+use Illuminate\Support\Facades\Route;
 
 // Ruta principal - Home
 Route::get('/', function () {
@@ -15,15 +14,7 @@ Route::get('/', function () {
 })->name('home');
 
 // Ruta per mostrar els productes
-Route::get('/productes', function () {
-    $data = [
-        'foto' => request('foto'),
-        'nom' => request('nom'),
-        'preu' => request('preu'),
-        'descripcio' => request('descripcio'),
-    ];
-    return view('productes', ['mineral' => $data]);
-})->name('productes');
+Route::get('/productes', [MineralsController::class, 'mesInfoProductes'])->name('productes');
 
 // Rutes del carrito utilitzant el ComandaController
 Route::get('/carrito', [ComandaController::class, 'index'])->name('carrito');
