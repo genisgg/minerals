@@ -3,64 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComandaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostra els productes del carrito.
      */
     public function index()
     {
-        //
+        // Obtenim el carrito de la sessió
+        $carrito = session('carrito', []); 
+        return view('carritu', compact('carrito'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Afegeix un producte al carrito.
      */
-    public function create()
+    public function afegirAlCarrito(Request $request)
     {
-        //
+        // Validem les dades rebudes
+        $request->validate([
+            'id' => 'required|integer',
+            'nom' => 'required|string',
+            'preu' => 'required|numeric|min:0',
+        ]);
+
+        // Afegim el producte al carrito
+        $producte = $request->only(['id', 'nom', 'preu']);
+        $carrito = session('carrito', []);
+        $carrito[] = $producte;
+        session(['carrito' => $carrito]);
+
+        return redirect()->route('carrito')->with('success', 'Producte afegit al carrito!');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Desa la comanda (finalitza el carrito).
      */
-    public function store(Request $request)
+    public function guardarComanda(Request $request)
     {
-        //
-    }
+        // Obtenim el carrito de la sessió
+        $carrito = session('carrito', []);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Comanda $comanda)
-    {
-        //
-    }
+        // Comprovem si el carrito està buit
+        if (empty($carrito)) {
+            return redirect()->route('carrito')->with('error', 'El carrito està buit.');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comanda $comanda)
-    {
-        //
-    }
+        // Crear nova comanda
+        $comanda = new Comanda();
+        $comanda->usuari_id = Auth::id(); // Assignem l'usuari logejat
+        $comanda->total = collect($carrito)->sum('preu'); // Sumem els preus dels productes
+        $comanda->detalls = json_encode($carrito); // Guardem els productes com a JSON
+        $comanda->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comanda $comanda)
-    {
-        //
-    }
+        // Buida el carrito després de desar la comanda
+        session()->forget('carrito');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Comanda $comanda)
-    {
-        //
+        return redirect()->route('carrito')->with('success', 'Comanda guardada correctament!');
     }
 }

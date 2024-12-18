@@ -33,10 +33,21 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
-                <!-- Icona del Carrito -->
-                <div style="margin-right: 20px; display: flex; align-items: center;">
-                    <a href="#" style="text-decoration: none; color: black;">
-                        <i class="fas fa-shopping-cart fa-lg"></i> <!-- Icona FontAwesome -->
+                <!-- Icona del Carrito amb contador -->
+                <div style="margin-right: 20px; display: flex; align-items: center; position: relative;">
+                    <a href="{{ route('carrito') }}" style="text-decoration: none; color: black; position: relative;">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        @php
+                            $productCount = session('carrito') ? count(session('carrito')) : 0;
+                        @endphp
+                        @if ($productCount >= 0)
+                            <span 
+                                style="position: absolute; top: -10px; right: -10px; background: red; color: white; 
+                                border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; 
+                                align-items: center; font-size: 12px;">
+                                {{ $productCount }}
+                            </span>
+                        @endif
                     </a>
                 </div>
 
