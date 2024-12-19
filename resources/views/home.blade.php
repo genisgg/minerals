@@ -20,7 +20,12 @@
 
             <!-- Llista de Minerals -->
             <section>
-                <h2 class="font-semibold text-lg text-gray-800 mb-6"> {{ __("Tots els minerals") }} </h2>
+                <h2 class="font-semibold text-lg text-gray-800 mb-6">
+                    {{ __("Tots els minerals") }}
+                    @can('administrar')
+                        {{__('Afegir')}}
+                    @endcan
+                </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" id="mineral-container">
                     @foreach ($minerals as $mineral)
                         <div class="mineral-card bg-white rounded-lg shadow p-4 hover:shadow-lg transition relative" 

@@ -17,13 +17,14 @@ Route::get('/', function () {
 Route::get('/productes', [MineralsController::class, 'mesInfoProductes'])->name('productes');
 
 // Rutes del carrito utilitzant el ComandaController
-Route::get('/carrito', [ComandaController::class, 'index'])->name('carrito');
-Route::post('/carrito/afegir', [ComandaController::class, 'afegirAlCarrito'])->name('carrito.afegir');
-Route::post('/carrito/afegir-id', [ComandaController::class, 'afegirAlCarritoPerId'])->name('carrito.afegir-id');
-Route::post('/carrito/guardar', [ComandaController::class, 'guardarComanda'])->name('carrito.guardar');
+Route::get('/carrito', [ComandaController::class, 'index'])->middleware('auth')->name('carrito');
+Route::post('/carrito/afegir', [ComandaController::class, 'afegirAlCarrito'])->middleware('auth')->name('carrito.afegir');
+Route::post('/carrito/afegir-id', [ComandaController::class, 'afegirAlCarritoPerId'])->middleware('auth')->name('carrito.afegir-id');
+Route::post('/carrito/guardar', [ComandaController::class, 'guardarComanda'])->middleware('auth')->name('carrito.guardar');
 
-Route::post('/carrito/actualitzar', [ComandaController::class, 'actualitzarCarrito'])->name('carrito.actualitzar');
-Route::post('/carrito/borrar', [ComandaController::class, 'borrarDelCarrito'])->name('carrito.borrar');
+Route::post('/carrito/actualitzar', [ComandaController::class, 'actualitzarCarrito'])->middleware('auth')->name('carrito.actualitzar');
+Route::post('/carrito/borrar', [ComandaController::class, 'borrarDelCarrito'])->middleware('auth')->name('carrito.borrar');
+
 
 
 // Ruta pel dashboard (requereix autenticació)

@@ -38,7 +38,7 @@
                                         @csrf
                                         <input type="hidden" name="index" value="{{ $index }}">
                                         <input type="number" name="quantitat" value="{{ $producte['quantitat'] ?? 1 }}" 
-                                               min="1" class="w-16 border rounded px-2 text-center" 
+                                               min="1" max="10" class="w-16 border rounded px-2 text-center" 
                                                onchange="this.form.submit()">
                                     </form>
                                 </div>
