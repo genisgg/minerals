@@ -20,17 +20,19 @@
 
             <!-- Llista de Minerals -->
             <section>
-                <h2 class="font-semibold text-lg text-gray-800 mb-6">
+                <h2 class="font-semibold text-lg text-gray-800 mb-6 flex items-center justify-between">
                     {{ __("Tots els minerals") }}
                     @can('administrar')
-                        {{__('Afegir')}}
+                        <button class="bg-indigo-600 text-white rounded-lg px-4 py-2 text-center">
+                            {{ __("Afegir Mineral") }}
+                        </button>
                     @endcan
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" id="mineral-container">
                     @foreach ($minerals as $mineral)
                         <div class="mineral-card bg-white rounded-lg shadow p-4 hover:shadow-lg transition relative" 
                              data-category-id="{{ $mineral->categoria_id }}">
-                            
+
                             <!-- Imatge -->
                             <div class="mineral-image h-48">
                                 <img src="{{ asset($mineral->foto ?? 'img/placeholder.jpg') }}" 
@@ -53,6 +55,13 @@
                                     {{ __("+ Info") }}
                                 </a>
                             </p>
+
+                            <!-- Botó Eliminar (només visible per administradors) -->
+                            @can('administrar')
+                                <button class="bg-red-600 text-white rounded-md px-3 py-1 text-sm font-semibold absolute bottom-2 right-2 hover:bg-red-700">
+                                    {{ __("Eliminar") }}
+                                </button>
+                            @endcan
                         </div>
                     @endforeach
                 </div>
