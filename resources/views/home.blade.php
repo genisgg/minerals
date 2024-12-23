@@ -60,10 +60,14 @@
 
                             <!-- Botó Eliminar (només admin) -->
                             @can('administrar')
-                                <button class="bg-red-600 text-white rounded-md px-3 py-1 text-sm font-semibold absolute bottom-2 right-2 hover:bg-red-700">
+                            <form action="{{ route('minerals.destroy', $mineral->id) }}" method="POST" class="absolute bottom-2 right-2">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-600 text-white rounded-md px-3 py-1 text-sm font-semibold hover:bg-red-700">
                                     {{ __("Eliminar") }}
                                 </button>
-                            @endcan
+                            </form>
+                        @endcan                        
                         </div>
                     @endforeach
                 </div>

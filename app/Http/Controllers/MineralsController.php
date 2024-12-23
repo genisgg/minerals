@@ -66,4 +66,14 @@ class MineralsController extends Controller
         // Redirigir amb un missatge d'èxit
         return redirect()->route('home')->with('success', __('Mineral afegit correctament!'));
     }
+
+    public function destroy($id)
+    {
+        $mineral = Minerals::findOrFail($id);
+
+        // Eliminar el mineral
+        $mineral->delete();
+
+        return redirect()->route('home')->with('success', __('Mineral eliminat correctament!'));
+    }
 }

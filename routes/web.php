@@ -35,6 +35,11 @@ Route::post('/minerals', [MineralsController::class, 'store'])
     ->middleware(['auth', 'can:administrar'])
     ->name('minerals.store');
 
+// Ruta per eliminar minerals (només admins)
+Route::delete('/minerals/{id}', [MineralsController::class, 'destroy'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('minerals.destroy');
+
 // Ruta pel dashboard (requereix autenticació)
 Route::get('/dashboard', function () {
     return view('dashboard');
