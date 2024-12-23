@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Minerals;
-use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class MineralsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $minerals = Minerals::with('categoria')->get();
         return view('minerals.index', compact('minerals'));
-        
     }
 
-    public function homeProductes(){
+    public function homeProductes()
+    {
         $minerals = Minerals::with('categoria')->get();
         return view('home', compact('minerals'));
     }
@@ -35,53 +32,38 @@ class MineralsController extends Controller
         return view('productes', ['mineral' => $mineral]);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        // Passar categories al formulari
+        $categories = Categoria::all();
+        return view('afegirmineral', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        // Validar les dades del formulari
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'preu' => 'required|numeric|min:0',
+            'descripcio' => 'required|string',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'categoria_id' => 'required|exists:categoria,id',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Minerals $minerals)
-    {
-        //
-    }
+        // Guardar la imatge al sistema d'arxius
+        $path = $request->file('foto')->store('public/img');
+        $fotoPath = str_replace('public/', '', $path);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Minerals $minerals)
-    {
-        //
-    }
+        // Crear un nou registre de mineral
+        Minerals::create([
+            'nom' => $request->input('nom'),
+            'preu' => $request->input('preu'),
+            'descripcio' => $request->input('descripcio'),
+            'foto' => $fotoPath,
+            'categoria_id' => $request->input('categoria_id'),
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Minerals $minerals)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Minerals $minerals)
-    {
-        //
+        // Redirigir amb un missatge d'èxit
+        return redirect()->route('home')->with('success', __('Mineral afegit correctament!'));
     }
 }

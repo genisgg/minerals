@@ -23,9 +23,11 @@
                 <h2 class="font-semibold text-lg text-gray-800 mb-6 flex items-center justify-between">
                     {{ __("Tots els minerals") }}
                     @can('administrar')
-                        <button class="bg-indigo-600 text-white rounded-lg px-4 py-2 text-center">
-                            {{ __("Afegir Mineral") }}
-                        </button>
+                        <a href="{{ route('minerals.create') }}">
+                            <button class="bg-indigo-600 text-white rounded-lg px-4 py-2 text-center">
+                                {{ __("Afegir Mineral") }}
+                            </button>
+                        </a>
                     @endcan
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" id="mineral-container">
@@ -56,7 +58,7 @@
                                 </a>
                             </p>
 
-                            <!-- Botó Eliminar (només visible per administradors) -->
+                            <!-- Botó Eliminar (només admin) -->
                             @can('administrar')
                                 <button class="bg-red-600 text-white rounded-md px-3 py-1 text-sm font-semibold absolute bottom-2 right-2 hover:bg-red-700">
                                     {{ __("Eliminar") }}

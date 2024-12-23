@@ -25,9 +25,15 @@ Route::post('/carrito/guardar', [ComandaController::class, 'guardarComanda'])->m
 Route::post('/carrito/actualitzar', [ComandaController::class, 'actualitzarCarrito'])->middleware('auth')->name('carrito.actualitzar');
 Route::post('/carrito/borrar', [ComandaController::class, 'borrarDelCarrito'])->middleware('auth')->name('carrito.borrar');
 
-//he de fer una ruta per l'admin poder afegir minerals amb un formulari i em demani nom, preu, descrip i foto. 
-//haure de fer també un array de middleware('auth') perque haura d'estar auth i també ser l'admin per poder accedir al formulari
-//per afegir el mineral
+// Ruta per afegir minerals (formulari - només admins)
+Route::get('/minerals/afegir', [MineralsController::class, 'create'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('minerals.create');
+
+// Ruta per guardar el mineral a la base de dades
+Route::post('/minerals', [MineralsController::class, 'store'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('minerals.store');
 
 // Ruta pel dashboard (requereix autenticació)
 Route::get('/dashboard', function () {

@@ -15,7 +15,6 @@ class ComandaController extends Controller
     {
         // Obtenim el carrito de la sessió
         $carrito = session('carrito', []);
-        // Calculem el total sumant preu * quantitat
         $total = collect($carrito)->sum(function ($producte) {
             return ($producte['preu'] * ($producte['quantitat'] ?? 1));
         });
@@ -40,13 +39,12 @@ class ComandaController extends Controller
             return redirect()->back()->with('error', 'El mineral no existeix.');
         }
 
-        // Preparem les dades per afegir al carrito
         $producte = [
             'id' => $mineral->id,
             'nom' => $mineral->nom,
             'preu' => $mineral->preu,
             'foto' => $mineral->foto ?? 'img/placeholder.jpg',
-            'quantitat' => 1, // Per defecte la quantitat és 1
+            'quantitat' => 1, 
         ];
 
         // Afegim el producte al carrito
