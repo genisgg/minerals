@@ -58,16 +58,24 @@
                                 </a>
                             </p>
 
-                            <!-- Botó Eliminar (només admin) -->
+                            <!-- Botons Editar i Eliminar (només admin) -->
                             @can('administrar')
-                            <form action="{{ route('minerals.destroy', $mineral->id) }}" method="POST" class="absolute bottom-2 right-2">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-600 text-white rounded-md px-3 py-1 text-sm font-semibold hover:bg-red-700">
-                                    {{ __("Eliminar") }}
-                                </button>
-                            </form>
-                        @endcan                        
+                                <div class="flex justify-between mt-4">
+                                    <!-- Botó Editar -->
+                                    <a class="bg-indigo-600 text-white rounded-md px-3 py-1 text-sm font-semibold hover:bg-indigo-700">
+                                        {{ __("Editar") }}
+                                    </a>
+
+                                    <!-- Botó Eliminar -->
+                                    <form action="{{ route('minerals.destroy', $mineral->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-600 text-white rounded-md px-3 py-1 text-sm font-semibold hover:bg-red-700">
+                                            {{ __("Eliminar") }}
+                                        </button>
+                                    </form>
+                                </div>
+                            @endcan
                         </div>
                     @endforeach
                 </div>
