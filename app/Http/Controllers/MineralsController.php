@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Minerals;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MineralsController extends Controller
 {
@@ -34,14 +35,12 @@ class MineralsController extends Controller
 
     public function create()
     {
-        // Passar categories al formulari
         $categories = Categoria::all();
         return view('afegirmineral', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        // Validar les dades del formulari
         $request->validate([
             'nom' => 'required|string|max:255',
             'preu' => 'required|numeric|min:0',
@@ -50,26 +49,30 @@ class MineralsController extends Controller
             'categoria_id' => 'required|exists:categoria,id',
         ]);
 
-        // Guardar la imatge al sistema d'arxius
-        $path = $request->file('foto')->store('public/img');
-        $fotoPath = str_replace('public/', '', $path);
+        // Guardar la imatge al directori public/img
+        $fileName = $request->file('foto')->getClientOriginalName();
+        $request->file('foto')->move(public_path('img'), $fileName);
 
         // Crear un nou registre de mineral
         Minerals::create([
             'nom' => $request->input('nom'),
             'preu' => $request->input('preu'),
             'descripcio' => $request->input('descripcio'),
-            'foto' => $fotoPath,
+            'foto' => 'img/' . $fileName, // Guardem el camí complet
             'categoria_id' => $request->input('categoria_id'),
         ]);
 
-        // Redirigir amb un missatge d'èxit
         return redirect()->route('home')->with('success', __('Mineral afegit correctament!'));
     }
 
     public function destroy($id)
     {
         $mineral = Minerals::findOrFail($id);
+
+        // Esborrar la imatge del sistema d'arxius si existeix
+        if ($mineral->foto && file_exists(public_path($mineral->foto))) {
+            unlink(public_path($mineral->foto));
+        }
 
         // Eliminar el mineral
         $mineral->delete();
@@ -86,7 +89,6 @@ class MineralsController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validar les dades del formulari
         $request->validate([
             'nom' => 'required|string|max:255',
             'preu' => 'required|numeric|min:0',
@@ -95,7 +97,6 @@ class MineralsController extends Controller
             'categoria_id' => 'required|exists:categoria,id',
         ]);
 
-        // Obtenir el mineral a actualitzar
         $mineral = Minerals::findOrFail($id);
 
         // Actualitzar camps
@@ -106,14 +107,19 @@ class MineralsController extends Controller
 
         // Si hi ha una nova foto, substituir l'anterior
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('public/img');
-            $fotoPath = str_replace('public/', '', $path);
-            $mineral->foto = $fotoPath;
+            // Esborrar la imatge anterior
+            if ($mineral->foto && file_exists(public_path($mineral->foto))) {
+                unlink(public_path($mineral->foto));
+            }
+
+            // Guardar la nova imatge
+            $fileName = $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move(public_path('img'), $fileName);
+            $mineral->foto = 'img/' . $fileName;
         }
 
         $mineral->save();
 
-        // Redirigir amb un missatge d'èxit
         return redirect()->route('home')->with('success', __('Mineral actualitzat correctament!'));
     }
 }
