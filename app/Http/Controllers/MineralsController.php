@@ -58,11 +58,11 @@ class MineralsController extends Controller
             'nom' => $request->input('nom'),
             'preu' => $request->input('preu'),
             'descripcio' => $request->input('descripcio'),
-            'foto' => 'img/' . $fileName, // Guardem el camí complet
+            'foto' => 'img/' . $fileName, 
             'categoria_id' => $request->input('categoria_id'),
         ]);
 
-        return redirect()->route('home')->with('success', __('Mineral afegit correctament!'));
+        return redirect()->route('home');
     }
 
     public function destroy($id)
@@ -77,7 +77,7 @@ class MineralsController extends Controller
         // Eliminar el mineral
         $mineral->delete();
 
-        return redirect()->route('home')->with('success', __('Mineral eliminat correctament!'));
+        return redirect()->route('home');
     }
 
     public function edit($id)
@@ -119,7 +119,6 @@ class MineralsController extends Controller
         }
 
         $mineral->save();
-
-        return redirect()->route('home')->with('success', __('Mineral actualitzat correctament!'));
+        return redirect()->route('home');
     }
 }

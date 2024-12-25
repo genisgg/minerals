@@ -1,10 +1,10 @@
 <x-guest-layout>
-    <div class="py-5 bg-gray-100">
+    <div class="py-40 bg-gray-100">
         <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Mineral Seleccionat -->
             <section class="bg-white rounded-lg shadow p-6">
                 <h2 class="font-semibold text-lg text-gray-800 mb-6 text-left">{{ __("Mineral Seleccionat: ") }}</h2>
-
+                
                 @if ($mineral)
                     <!-- Contingut del mineral -->
                     <div id="mineral-container" class="flex flex-wrap gap-6">
@@ -33,8 +33,8 @@
                     </div>
                 @else
                     <!-- Missatge per defecte si no hi ha cap mineral -->
-                    <div id="no-mineral" class="text-center text-gray-700">
-                        <p class="text-lg">{{ __("No s'ha trobat cap mineral.") }}</p>
+                    <div id="no-mineral" class="py-40 text-center text-gray-700">
+                        <p class="text-lg">{{ __("Selecciona algun mineral per veure mes informació.") }}</p>
                     </div>
                 @endif
             </section>

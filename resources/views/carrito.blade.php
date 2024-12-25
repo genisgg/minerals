@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="py-5 bg-gray-100">
+    <div class="py-40 bg-gray-100">
         <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-lg text-gray-800 mb-6">El teu Carrito</h2>
 
