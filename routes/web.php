@@ -35,6 +35,16 @@ Route::post('/minerals', [MineralsController::class, 'store'])
     ->middleware(['auth', 'can:administrar'])
     ->name('minerals.store');
 
+// Ruta per editar minerals (formulari - només admins)
+Route::get('/minerals/{id}/editar', [MineralsController::class, 'edit'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('minerals.edit');
+
+// Ruta per actualitzar minerals a la base de dades
+Route::patch('/minerals/{id}', [MineralsController::class, 'update'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('minerals.update');
+
 // Ruta per eliminar minerals (només admins)
 Route::delete('/minerals/{id}', [MineralsController::class, 'destroy'])
     ->middleware(['auth', 'can:administrar'])

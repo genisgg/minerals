@@ -58,11 +58,12 @@
                                 </a>
                             </p>
 
-                            <!-- Botons Editar i Eliminar (només admin) -->
+                            <!-- (només admin) -->
                             @can('administrar')
                                 <div class="flex justify-between mt-4">
+                                    
                                     <!-- Botó Editar -->
-                                    <a class="bg-indigo-600 text-white rounded-md px-3 py-1 text-sm font-semibold hover:bg-indigo-700">
+                                    <a href="{{ route('minerals.edit', $mineral->id) }}" class="bg-indigo-600 text-white rounded-md px-3 py-1 text-sm font-semibold hover:bg-indigo-600">
                                         {{ __("Editar") }}
                                     </a>
 
