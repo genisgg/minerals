@@ -10,6 +10,9 @@ class Categoria extends Model
 
     protected $fillable = [
         'nom_categoria',
+        'nom_categoria_en',
+        'nom_categoria_es',
+        'nom_categoria_fr',
     ];
 
     public function minerals()

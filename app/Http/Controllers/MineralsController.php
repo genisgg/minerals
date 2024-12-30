@@ -7,6 +7,8 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\App;
+
 class MineralsController extends Controller
 {
     public function index()
@@ -17,25 +19,81 @@ class MineralsController extends Controller
 
     public function homeProductes()
     {
-        $minerals = Minerals::with('categoria')->get();
-        return view('home', compact('minerals'));
+        $categories = Categoria::all()->map(function ($categoria) {
+            $locale = App::getLocale();
+            return [
+                'id' => $categoria->id,
+                'name' => match ($locale) {
+                    'en' => $categoria->nom_categoria_en,
+                    'es' => $categoria->nom_categoria_es,
+                    'fr' => $categoria->nom_categoria_fr,
+                    default => $categoria->nom_categoria,
+                },
+            ];
+        });
+    
+        $minerals = Minerals::with('categoria')->get()->map(function ($mineral) {
+            $locale = App::getLocale();
+            return [
+                'id' => $mineral->id,
+                'nom' => match ($locale) {
+                    'en' => $mineral->nom_en,
+                    'es' => $mineral->nom_es,
+                    'fr' => $mineral->nom_fr,
+                    default => $mineral->nom,
+                },
+                'descripcio' => match ($locale) {
+                    'en' => $mineral->descripcio_en,
+                    'es' => $mineral->descripcio_es,
+                    'fr' => $mineral->descripcio_fr,
+                    default => $mineral->descripcio,
+                },
+                'preu' => $mineral->preu,
+                'foto' => $mineral->foto,
+                'categoria' => $mineral->categoria,
+            ];
+        });
+    
+        return view('home', compact('categories', 'minerals'));
     }
+    
 
     public function mesInfoProductes(Request $request)
     {
         $mineralId = $request->input('id');
-        $mineral = Minerals::find($mineralId);
+        $mineral = Minerals::with('categoria')->find($mineralId);
 
         if (!$mineral) {
             return view('productes', ['mineral' => null]);
         }
+
+        // Traduir el nom de la categoria del mineral
+        $locale = App::getLocale();
+        $mineral->categoria->nom_categoria = match ($locale) {
+            'en' => $mineral->categoria->nom_categoria_en,
+            'es' => $mineral->categoria->nom_categoria_es,
+            'fr' => $mineral->categoria->nom_categoria_fr,
+            default => $mineral->categoria->nom_categoria,
+        };
 
         return view('productes', ['mineral' => $mineral]);
     }
 
     public function create()
     {
-        $categories = Categoria::all();
+        $categories = Categoria::all()->map(function ($categoria) {
+            $locale = App::getLocale();
+            return [
+                'id' => $categoria->id,
+                'name' => match ($locale) {
+                    'en' => $categoria->nom_categoria_en,
+                    'es' => $categoria->nom_categoria_es,
+                    'fr' => $categoria->nom_categoria_fr,
+                    default => $categoria->nom_categoria,
+                },
+            ];
+        });
+
         return view('afegirmineral', compact('categories'));
     }
 
@@ -83,7 +141,19 @@ class MineralsController extends Controller
     public function edit($id)
     {
         $mineral = Minerals::findOrFail($id);
-        $categories = Categoria::all();
+        $categories = Categoria::all()->map(function ($categoria) {
+            $locale = App::getLocale();
+            return [
+                'id' => $categoria->id,
+                'name' => match ($locale) {
+                    'en' => $categoria->nom_categoria_en,
+                    'es' => $categoria->nom_categoria_es,
+                    'fr' => $categoria->nom_categoria_fr,
+                    default => $categoria->nom_categoria,
+                },
+            ];
+        });
+
         return view('editarmineral', compact('mineral', 'categories'));
     }
 

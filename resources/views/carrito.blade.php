@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="py-40 bg-gray-100">
         <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="font-semibold text-lg text-gray-800 mb-6">El teu Carrito</h2>
+            <h2 class="font-semibold text-lg text-gray-800 mb-6">{{ __("El teu Carrito") }}</h2>
 
             <!-- Mostra el número total de productes -->
             <div class="bg-white rounded-lg shadow p-4 mb-6">
@@ -45,7 +45,7 @@
 
                                 <!-- Preu Total per Producte -->
                                 <div class="w-1/3 text-right flex items-center justify-end space-x-2">
-                                    <span class="text-gray-600">Preu:</span>
+                                    <span class="text-gray-600">{{ __("Preu: ") }}</span>
                                     <span class="text-indigo-600 font-bold">
                                         {{ number_format($producte['preu'] * ($producte['quantitat'] ?? 1), 2) }} €
                                     </span>

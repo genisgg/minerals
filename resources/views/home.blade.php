@@ -44,10 +44,11 @@
 
                             <!-- Nom i Preu -->
                             <h3 class="font-medium text-gray-700 text-center mt-4">
-                                {{ $mineral->nom }}
+                                <span class="text-gray-700 font-normal">{{ __("Nom: ") }}</span>
+                                <span class="text-indigo-600 font-bold">{{ $mineral->nom }}</span>
                             </h3>
                             <p class="text-center">
-                                <span class="text-gray-700 font-normal">Preu:</span>
+                                <span class="text-gray-700 font-normal">{{ __("Preu: ") }}</span>
                                 <span class="text-indigo-600 font-bold">{{ $mineral->preu }} €</span>
                             </p>
 

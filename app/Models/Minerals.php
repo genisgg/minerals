@@ -10,8 +10,14 @@ class Minerals extends Model
 
     protected $fillable = [
         'nom',
-        'preu',
+        'nom_en',
+        'nom_es',
+        'nom_fr',
         'descripcio',
+        'descripcio_en',
+        'descripcio_es',
+        'descripcio_fr',
+        'preu',
         'foto',
         'categoria_id',
     ];
