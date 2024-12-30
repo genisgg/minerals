@@ -62,4 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Canvi idioma
+Route::get('/lang/{idioma}', 'App\Http\Controllers\LocalizationController@index')
+    ->where('idioma', 'ca|en|es|fr');
+
 require __DIR__.'/auth.php';

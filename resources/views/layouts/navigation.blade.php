@@ -62,7 +62,7 @@
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a 1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
@@ -84,10 +84,34 @@
                             </x-dropdown-link>
                         </form>
 
-                        <x-dropdown-link>
-                            {{ __('Idioma') }}
-                        </x-dropdown-link>
-                        
+                        <!-- Idioma Dropdown -->
+                        <div class="border-t border-gray-200 mt-2 pt-2 px-4">
+                            <p class="text-sm font-medium text-gray-500">{{ __('Idioma') }}</p>
+                            <div class="flex flex-col space-y-2 mt-2">
+                                <x-dropdown-link :href="url('/lang/ca')">
+                                    <span class="{{ App::currentLocale() === 'ca' ? 'underline font-bold' : '' }}">
+                                        {{ __('Català') }}
+                                    </span>
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="url('/lang/es')">
+                                    <span class="{{ App::currentLocale() === 'es' ? 'underline font-bold' : '' }}">
+                                        {{ __('Castellà') }}
+                                    </span>
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="url('/lang/en')">
+                                    <span class="{{ App::currentLocale() === 'en' ? 'underline font-bold' : '' }}">
+                                        {{ __('Anglès') }}
+                                    </span>
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="url('/lang/fr')">
+                                    <span class="{{ App::currentLocale() === 'fr' ? 'underline font-bold' : '' }}">
+                                        {{ __('Francès') }}
+                                    </span>
+                                </x-dropdown-link>
+                            </div>
+                        </div>
+
+
                     </x-slot>
                 </x-dropdown>
                 @endauth
