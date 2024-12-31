@@ -29,6 +29,7 @@ class CategoriaController extends Controller
     public function create()
     {
         //
+        return view('afegircategoria');
     }
 
     /**
@@ -36,7 +37,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom_categoria' => 'required|string|max:255',
+            'nom_categoria_en' => 'nullable|string|max:255',
+            'nom_categoria_es' => 'nullable|string|max:255',
+            'nom_categoria_fr' => 'nullable|string|max:255',
+        ]);
+
+        Categoria::create($request->all());
+
+        return redirect()->route('home')->with('success', __('Categoria afegida correctament!'));
     }
 
     /**

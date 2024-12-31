@@ -52,5 +52,8 @@
   "Actualitzar": "Update",
   "Borrar": "Delete",
   "Total de la comanda: ": "Order total: ",
-  "Nom: ": "Name: "
+  "Nom: ": "Name: ",
+  "Afegir Categoria" : "Add Category",
+  "ID de la Categoria": "Category ID",
+  "Nom de la Categoria": "Category Name"
 }

@@ -50,6 +50,15 @@ Route::delete('/minerals/{id}', [MineralsController::class, 'destroy'])
     ->middleware(['auth', 'can:administrar'])
     ->name('minerals.destroy');
 
+// Rutes per gestionar categories
+Route::get('/categories/afegir', [CategoriaController::class, 'create'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('categories.create');
+
+Route::post('/categories', [CategoriaController::class, 'store'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('categories.store');
+
 // Ruta pel dashboard (requereix autenticació)
 Route::get('/dashboard', function () {
     return view('dashboard');
