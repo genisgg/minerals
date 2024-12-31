@@ -7,7 +7,7 @@
                     {{ __("Categories") }}
                     @can('administrar')
                         <a href="{{ route('categories.create') }}">
-                            <button class="bg-green-600 text-white rounded-lg px-4 py-2 text-center">
+                            <button class="bg-indigo-600 text-white rounded-lg px-4 py-2 text-center">
                                 {{ __("Afegir Categoria") }}
                             </button>
                         </a>
