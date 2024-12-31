@@ -6,7 +6,7 @@
             <!-- Mostra el número total de productes -->
             <div class="bg-white rounded-lg shadow p-4 mb-6">
                 <p class="text-gray-700 text-lg">
-                    {{ __("Tens") }} <span id="product-count" class="font-bold">{{ count($carrito) }}</span> {{ __("productes al carrito.") }}
+                    {{ __("Tens") }} <span id="product-count" class="font-bold">{{ count($carrito) }}</span> {{ __(" tipus de productes al carrito.") }}
                 </p>
             </div>
 
@@ -65,11 +65,14 @@
                         @endforeach
                     </ul>
 
-                    <!-- Total -->
+                    <!-- Total i Botó Tramitar Comanda -->
                     <div class="mt-6 text-right">
                         <h3 class="text-xl font-semibold text-gray-800">
                             {{ __("Total de la comanda: ") }} <span class="text-indigo-600">{{ number_format($total, 2) }} €</span>
                         </h3>
+                        <button class="bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-700">
+                            {{ __("Tramitar Comanda") }}
+                        </button>
                     </div>
                 @else
                     <p class="text-gray-700">{{ __("El carrito està buit.") }}</p>

@@ -52,5 +52,11 @@
   "Actualitzar": "Actualizar",
   "Borrar": "Borrar",
   "Total de la comanda: ": "Total del pedido: ",
-  "Nom: ": "Nombre: "
+  "Nom: ": "Nombre: ",
+  "Afegir Categoria": "Añadir Categoría",
+  "ID de la Categoria": "ID de la Categoría",
+  "Nom de la Categoria": "Nombre de la Categoría",
+  "Guardar Canvis": "Guardar Cambios",
+  "Tramitar Comanda": "Tramitar Pedido"
+
 }

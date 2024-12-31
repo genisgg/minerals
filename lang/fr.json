@@ -51,5 +51,11 @@
   "Paperera": "Corbeille",
   "Actualitzar": "Mettre à jour",
   "Borrar": "Supprimer",
-  "Total de la comanda: ": "Total de la commande: "
+  "Total de la comanda: ": "Total de la commande: ",
+  "Afegir Categoria": "Ajouter une Catégorie",
+  "ID de la Categoria": "ID de la Catégorie",
+  "Nom de la Categoria": "Nom de la Catégorie",
+  "Guardar Canvis": "Enregistrer les Changements",
+  "Tramitar Comanda": "Passer la Commande"
+
 }

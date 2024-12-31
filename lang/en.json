@@ -11,7 +11,7 @@
   "Francès": "French",
   "El teu Carrito": "Your Cart",
   "Tens": "You have",
-  "productes al carrito.": "products in the cart.",
+  "tipus de productes al carrito.": "types of products in the cart.",
   "Quantitat:": "Quantity:",
   "Preu unitari:": "Unit price:",
   "Preu:": "Price:",
@@ -56,5 +56,8 @@
   "Afegir Categoria" : "Add Category",
   "ID de la Categoria": "Category ID",
   "Nom de la Categoria": "Category Name",
-  "Guardar Canvis" : "Save Changes"
+  "Guardar Canvis" : "Save Changes",
+  "Tramitar Comanda": "Checkout"
+
+
 }
