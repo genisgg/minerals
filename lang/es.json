@@ -29,7 +29,7 @@
   "Guardar canvis": "Guardar cambios",
   "Foto del Mineral (opcional)": "Foto del Mineral (opcional)",
   "Mineral Seleccionat:": "Mineral Seleccionado:",
-  "Selecciona algun mineral per veure mes informació.": "Selecciona algún mineral para ver más información.",
+  "Selecciona algun mineral per veure mes informació.": "Selecciona un mineral para ver más información.",
   "La millor pàgina web per fer créixer la teva col·lecció de minerals!": "¡La mejor página web para hacer crecer tu colección de minerales!",
   "Telèfon:": "Teléfono:",
   "Email:": "Correo electrónico:",
@@ -40,10 +40,17 @@
   "Editar": "Editar",
   "Eliminar": "Eliminar",
   "+ Info": "+ Info",
-  "Email": "Correo electrónico",
   "Contrasenya": "Contraseña",
   "Recordam": "Recuérdame",
   "Contrassenya oblidada?": "¿Olvidaste tu contraseña?",
   "Registrat correctament!": "¡Inicio de sesión correcto!",
-  "Anar a la botiga": "Ir a la tienda"
+  "Anar a la botiga": "Ir a la tienda",
+  "Foto del mineral": "Foto del mineral",
+  "Preu unitari: ": "Precio unitario: ",
+  "Preu: ": "Precio: ",
+  "Paperera": "Papelera",
+  "Actualitzar": "Actualizar",
+  "Borrar": "Borrar",
+  "Total de la comanda: ": "Total del pedido: ",
+  "Nom: ": "Nombre: "
 }

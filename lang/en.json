@@ -51,5 +51,6 @@
   "Paperera": "Trash",
   "Actualitzar": "Update",
   "Borrar": "Delete",
-  "Total de la comanda: ": "Order total: "
+  "Total de la comanda: ": "Order total: ",
+  "Nom: ": "Name: "
 }
