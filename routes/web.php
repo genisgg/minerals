@@ -71,6 +71,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Ruta per eliminar categories (només admins)
+Route::delete('/categories/{id}', [CategoriaController::class, 'destroy'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('categories.destroy');
+
+
+// Ruta per afegir categories (només admins)
+Route::get('/categories/{id}/editar', [CategoriaController::class, 'edit'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('categories.edit');
+
+Route::put('/categories/{id}', [CategoriaController::class, 'update'])
+    ->middleware(['auth', 'can:administrar'])
+    ->name('categories.update');
+
 // Canvi idioma
 Route::get('/lang/{idioma}', 'App\Http\Controllers\LocalizationController@index')
     ->where('idioma', 'ca|en|es|fr');

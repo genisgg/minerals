@@ -13,16 +13,37 @@
                         </a>
                     @endcan
                 </h2>
-                <div class="flex flex-wrap justify-between gap-2">
+                <div class="flex flex-wrap gap-4">
                     <button class="category-btn bg-indigo-600 text-white rounded-lg px-4 py-2 flex-1 text-center"
                             onclick="filterMinerals('all', this)">
-                            {{ __("Tots els minerals") }}
+                        {{ __("Tots els minerals") }}
                     </button>
                     @foreach ($categories as $categoria)
-                        <button class="category-btn bg-white text-gray-700 rounded-lg px-4 py-2 flex-1 text-center"
-                                onclick="filterMinerals('{{ $categoria->id }}', this)">
-                            {{ $categoria->nom_categoria }}
-                        </button>
+                        <div class="bg-white p-4 rounded-lg shadow w-60 text-center">
+                            <!-- Nom Categoria -->
+                            <button class="category-btn bg-white text-gray-700 rounded-lg px-4 py-2 text-center w-full mb-2"
+                                    onclick="filterMinerals('{{ $categoria->id }}', this)">
+                                {{ $categoria->nom_categoria }}
+                            </button>
+                            @can('administrar')
+                                <div class="flex justify-between mt-2">
+                                    <!-- Botó Editar Categoria -->
+                                    <a href="{{ route('categories.edit', $categoria->id) }}">
+                                        <button class="bg-blue-600 text-white rounded-lg px-3 py-1 hover:bg-blue-700 text-sm">
+                                            {{ __("Editar") }}
+                                        </button>
+                                    </a>
+                                    <!-- Botó Eliminar Categoria -->
+                                    <form action="{{ route('categories.destroy', $categoria->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-600 text-white rounded-lg px-3 py-1 hover:bg-red-700 text-sm">
+                                            {{ __("Eliminar") }}
+                                        </button>
+                                    </form>
+                                </div>
+                            @endcan
+                        </div>
                     @endforeach
                 </div>
             </section>
