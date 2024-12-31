@@ -13,18 +13,15 @@
                         </a>
                     @endcan
                 </h2>
-                <div class="flex flex-wrap gap-4">
-                    <button class="category-btn bg-indigo-600 text-white rounded-lg px-4 py-2 flex-1 text-center"
-                            onclick="filterMinerals('all', this)">
-                        {{ __("Tots els minerals") }}
-                    </button>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="category-container bg-indigo-600 text-white p-4 rounded-lg shadow text-center cursor-pointer"
+                         onclick="filterMinerals('all', this)">
+                        <span class="font-medium">{{ __("Tots els minerals") }}</span>
+                    </div>
                     @foreach ($categories as $categoria)
-                        <div class="bg-white p-4 rounded-lg shadow w-60 text-center">
-                            <!-- Nom Categoria -->
-                            <button class="category-btn bg-white text-gray-700 rounded-lg px-4 py-2 text-center w-full mb-2"
-                                    onclick="filterMinerals('{{ $categoria->id }}', this)">
-                                {{ $categoria->nom_categoria }}
-                            </button>
+                        <div class="category-container bg-white text-gray-700 p-4 rounded-lg shadow text-center cursor-pointer"
+                             onclick="filterMinerals('{{ $categoria->id }}', this)">
+                            <span class="font-medium">{{ $categoria->nom_categoria }}</span>
                             @can('administrar')
                                 <div class="flex justify-between mt-2">
                                     <!-- Botó Editar Categoria -->
@@ -119,24 +116,22 @@
     <div style="height: 100px;"></div>
     
     <script>
-        function filterMinerals(categoryId, button) {
+        function filterMinerals(categoryId, container) {
             const minerals = document.querySelectorAll('.mineral-card');
-            const buttons = document.querySelectorAll('.category-btn');
-    
+            const containers = document.querySelectorAll('.category-container');
+
             // Filtra els minerals segons la categoria seleccionada
             minerals.forEach(mineral => {
                 mineral.style.display = (categoryId === 'all' || mineral.dataset.categoryId === categoryId) ? 'block' : 'none';
             });
-    
+
             // Elimina la classe activa de totes les categories
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-indigo-600', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-700');
-            });
-    
+            containers.forEach(cont => cont.classList.remove('bg-indigo-600', 'text-white'));
+            containers.forEach(cont => cont.classList.add('bg-white', 'text-gray-700'));
+
             // Afegeix la classe activa a la categoria seleccionada
-            button.classList.add('bg-indigo-600', 'text-white');
-            button.classList.remove('bg-white', 'text-gray-700');
+            container.classList.add('bg-indigo-600', 'text-white');
+            container.classList.remove('bg-white', 'text-gray-700');
         }
     </script>
 </x-guest-layout>
