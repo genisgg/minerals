@@ -33,6 +33,12 @@
                         {{ __('Log in') }}
                     </x-nav-link>
                 </div>
+                <!-- Register Button -->
+                <div>
+                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                    </x-nav-link>
+                </div>
                 @endguest
 
                 @auth
