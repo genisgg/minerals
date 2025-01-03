@@ -1,4 +1,19 @@
 <x-guest-layout>
+
+   <!-- Header Image or Banner -->
+    <div class="header-banner relative">
+        <!-- Imatge de fons -->
+        <div class="absolute inset-0">
+            <img src="{{ asset('img/headerImg.png') }}" alt="Encapçalament" class="w-full h-80 object-cover brightness-90">
+        </div>
+        <!-- Text al damunt -->
+        <div class="relative flex flex-col items-center justify-center h-80">
+            <h1 class="text-5xl font-extrabold text-white drop-shadow-lg tracking-widest z-10">{{ __('MINERALS STORE') }}</h1>
+            <p class="text-lg text-gray-200 mt-2 tracking-wide z-10">{{ __('La teva botiga de minerals de confiança') }}</p>
+        </div>
+    </div>
+    
+
     <div class="py-5 bg-gray-100">
         <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Categories -->
