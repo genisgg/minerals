@@ -21,6 +21,7 @@
   "Afegir el Mineral a la botiga": "Ajouter le Minéral à la boutique",
   "Nom del Mineral": "Nom du Minéral",
   "Preu (€)": "Prix (€)",
+  "Nom: ": "Nom: ",
   "Categoria del Mineral": "Catégorie du Minéral",
   "Descripció": "Description",
   "Foto del Mineral": "Photo du Minéral",
@@ -56,6 +57,9 @@
   "ID de la Categoria": "ID de la Catégorie",
   "Nom de la Categoria": "Nom de la Catégorie",
   "Guardar Canvis": "Enregistrer les Changements",
-  "Tramitar Comanda": "Passer la Commande"
+  "Tramitar Comanda": "Passer la Commande",
+  " tipus de productes al carrito.": "types de produits dans le panier.",
+  "Selecciona algun mineral per veure més informació.": "Sélectionnez un minéral pour voir plus d'informations."
+
 
 }
