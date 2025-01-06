@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="py-5 bg-gray-100">
-        <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8 mb-24">
             <h2 class="font-semibold text-lg text-gray-800 mb-6">{{ __("Editar Categoria") }}</h2>
 
             <form method="POST" action="{{ route('categories.update', $categoria->id) }}">

@@ -89,6 +89,33 @@
                                 {{ __('Tancar sessió') }}
                             </x-dropdown-link>
                         </form>
+
+                        <!-- Idioma Dropdown -->
+                        <div class="border-t border-gray-200 mt-2 pt-2 px-4">
+                            <p class="text-sm font-medium text-gray-500">{{ __('Idioma') }}</p>
+                            <div class="flex flex-col space-y-2 mt-2">
+                                <x-dropdown-link :href="url('/lang/ca')">
+                                    <span class="{{ App::currentLocale() === 'ca' ? 'underline font-bold' : '' }}">
+                                        {{ __('Català') }}
+                                    </span>
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="url('/lang/es')">
+                                    <span class="{{ App::currentLocale() === 'es' ? 'underline font-bold' : '' }}">
+                                        {{ __('Castellà') }}
+                                    </span>
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="url('/lang/en')">
+                                    <span class="{{ App::currentLocale() === 'en' ? 'underline font-bold' : '' }}">
+                                        {{ __('Anglès') }}
+                                    </span>
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="url('/lang/fr')">
+                                    <span class="{{ App::currentLocale() === 'fr' ? 'underline font-bold' : '' }}">
+                                        {{ __('Francès') }}
+                                    </span>
+                                </x-dropdown-link>
+                            </div>
+                        </div>
                     </x-slot>
                 </x-dropdown>
                 @endauth
@@ -114,19 +141,19 @@
     }
 
     .header-banner img {
-        filter: brightness(0.8); /* Redueix lleugerament la brillantor de la imatge */
+        filter: brightness(0.8); /* Redueix la brillantor de la imatge */
         border-radius: 10px;
     }
 
     .header-banner h1 {
         text-transform: uppercase;
         letter-spacing: 0.15em; /* Afegeix espaiat entre les lletres */
+        font-size: 60px;
     }
 
     .header-banner p {
         font-style: italic;
-        font-size: 1.2rem;
+        font-size: 20px;
     }
 
 </style>
-

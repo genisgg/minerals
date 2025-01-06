@@ -16,18 +16,16 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">{{ __("Categoria del Mineral") }}</label>
-                    <div class="flex flex-wrap gap-2">
-                        @foreach($categories as $categoria)
-                            <button type="button" 
-                                    class="category-btn {{ $mineral->categoria_id == $categoria->id ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700' }} rounded-lg px-4 py-2 flex-1 text-center border border-gray-300"
-                                    onclick="selectCategory({{ $categoria->id }}, this)">
+                    <label for="categoria" class="block text-gray-700 font-medium">{{ __('Categoria') }}</label>
+                    <select id="categoria" name="categoria_id" class="form-control">
+                        @foreach ($categories as $categoria)
+                            <option value="{{ $categoria->id }}" {{ $mineral->categoria_id == $categoria->id ? 'selected' : '' }}>
                                 {{ $categoria->nom_categoria }}
-                            </button>
+                            </option>
                         @endforeach
-                    </div>
-                    <input type="hidden" id="categoria_id" name="categoria_id" value="{{ $mineral->categoria_id }}" required>
+                    </select>
                 </div>
+                
 
                 <div class="mb-4">
                     <label for="descripcio" class="block text-gray-700 font-medium">{{ __("Descripció") }}</label>
