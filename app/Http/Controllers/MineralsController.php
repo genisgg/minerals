@@ -51,21 +51,22 @@ class MineralsController extends Controller
             'categoria_id' => 'required|exists:categoria,id',
         ]);
 
-        // Guardar la imatge al directori public/img
+        // Guardar la imatge al directori `public/img`
         $fileName = $request->file('foto')->getClientOriginalName();
         $request->file('foto')->move(public_path('img'), $fileName);
 
-        // Crear un nou registre de mineral
+        // Crear el nou mineral
         Minerals::create([
             'nom' => $request->input('nom'),
             'preu' => $request->input('preu'),
             'descripcio' => $request->input('descripcio'),
-            'foto' => 'img/' . $fileName, 
+            'foto' => 'img/' . $fileName,
             'categoria_id' => $request->input('categoria_id'),
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', __('Mineral afegit correctament!'));
     }
+
 
     public function destroy($id)
     {
