@@ -60,5 +60,9 @@
   "Tramitar Comanda": "Tramitar Pedido",
   " tipus de productes al carrito.": "types of products in the cart.",
   "Selecciona algun mineral per veure més informació.": "Selecciona algún mineral para ver más información.",
-  "La teva botiga de minerals de confiança":"Tu tienda de minerales de confianza"
+  "La teva botiga de minerals de confiança":"Tu tienda de minerales de confianza",
+  "Comanda tramitada": "Pedido tramitado",
+  "Producte esborrat del carrito!" : "¡Producto eliminado del carrito!",
+  "Producte afegit al carrito!" : "¡Producto añadido al carrito!"
+
 }

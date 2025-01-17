@@ -67,7 +67,7 @@ class ComandaController extends Controller
 
         session(['carrito' => $carrito]);
 
-        return redirect()->route('carrito')->with('success', 'Producte afegit al carrito!');
+        return redirect()->route('carrito')->with('success', __('Producte afegit al carrito!'));
     }
 
     /**
@@ -89,7 +89,7 @@ class ComandaController extends Controller
             session(['carrito' => $carrito]);
         }
 
-        return redirect()->route('carrito')->with('success', 'Quantitat actualitzada!');
+        return redirect()->route('carrito');
     }
 
     /**
@@ -109,7 +109,7 @@ class ComandaController extends Controller
             session(['carrito' => array_values($carrito)]); // Reorganitza l'índex
         }
 
-        return redirect()->route('carrito')->with('success', 'Producte esborrat del carrito!');
+        return redirect()->route('carrito')->with('success', __('Producte esborrat del carrito!'));
     }
 
     /**
@@ -122,7 +122,7 @@ class ComandaController extends Controller
 
         // Comprovem si el carrito està buit
         if (empty($carrito)) {
-            return redirect()->route('carrito')->with('error', 'El carrito està buit.');
+            return redirect()->route('carrito');
         }
 
         // Crear nova comanda
@@ -137,7 +137,7 @@ class ComandaController extends Controller
         // Buida el carrito després de desar la comanda
         session()->forget('carrito');
 
-        return redirect()->route('carrito')->with('success', 'Comanda guardada correctament!');
+        return redirect()->route('carrito');
     }
 
     public function tramitarComanda(Request $request)
@@ -153,7 +153,7 @@ class ComandaController extends Controller
         session()->forget('carrito');
 
         // Retorna la vista amb un missatge d'èxit
-        return redirect()->route('carrito')->with('success', 'Comanda tramitada.');
+        return redirect()->route('carrito')->with('success', __('Comanda tramitada'));
     }
 
 }
