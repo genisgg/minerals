@@ -101,7 +101,7 @@
                                 </a>
                             </p>
 
-                            <!-- (només admin) -->
+                            <!-- (només administradors) -->
                             @can('administrar')
                                 <div class="flex justify-between mt-4">
                                     
