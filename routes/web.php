@@ -25,6 +25,8 @@ Route::post('/carrito/guardar', [ComandaController::class, 'guardarComanda'])->m
 Route::post('/carrito/actualitzar', [ComandaController::class, 'actualitzarCarrito'])->middleware('auth')->name('carrito.actualitzar');
 Route::post('/carrito/borrar', [ComandaController::class, 'borrarDelCarrito'])->middleware('auth')->name('carrito.borrar');
 
+Route::post('/carrito/tramitar', [ComandaController::class, 'tramitarComanda'])->name('carrito.tramitar');
+
 // Ruta per afegir minerals (formulari - només admins)
 Route::get('/minerals/afegir', [MineralsController::class, 'create'])
     ->middleware(['auth', 'can:administrar'])

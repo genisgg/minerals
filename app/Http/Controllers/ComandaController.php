@@ -139,4 +139,21 @@ class ComandaController extends Controller
 
         return redirect()->route('carrito')->with('success', 'Comanda guardada correctament!');
     }
+
+    public function tramitarComanda(Request $request)
+    {
+        // Crea una nova entrada a la taula comanda
+        \App\Models\Comanda::create([
+            'usuari_id' => Auth::id(), 
+            'data_comanda' => now()->toDateTimeString(),
+            'estat' => 'pendent', 
+        ]);
+
+        // Buida el carrito
+        session()->forget('carrito');
+
+        // Retorna la vista amb un missatge d'èxit
+        return redirect()->route('carrito')->with('success', 'Comanda tramitada.');
+    }
+
 }

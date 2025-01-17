@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comanda extends Model
 {
-    //
-    protected $table="comandes";
+    protected $table = "comanda";
+
+    protected $fillable = [
+        'usuari_id',
+        'data_comanda',
+        'estat',
+    ];
 
     public function usuaris()
     {
@@ -18,5 +23,4 @@ class Comanda extends Model
     {
         return $this->hasMany(Minerals::class);
     }
-
 }

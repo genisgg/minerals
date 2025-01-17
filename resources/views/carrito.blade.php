@@ -1,6 +1,14 @@
 <x-guest-layout>
     <div class="py-40 bg-gray-100">
         <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Mostra missatges flash -->
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+
             <h2 class="font-semibold text-lg text-gray-800 mb-6">{{ __("El teu Carrito") }}</h2>
 
             <!-- Mostra el número total de productes -->
@@ -70,9 +78,12 @@
                         <h3 class="text-xl font-semibold text-gray-800">
                             {{ __("Total de la comanda: ") }} <span class="text-indigo-600">{{ number_format($total, 2) }} €</span>
                         </h3>
-                        <button class="bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-700">
-                            {{ __("Tramitar Comanda") }}
-                        </button>
+                        <form action="{{ route('carrito.tramitar') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded mt-4 hover:bg-green-700">
+                                {{ __("Tramitar Comanda") }}
+                            </button>
+                        </form>
                     </div>
                 @else
                     <p class="text-gray-700">{{ __("El carrito està buit.") }}</p>
